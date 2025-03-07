@@ -1,11 +1,25 @@
 <html>
-  <body>  
-      <% messages.map((message) => { %>
-        <ul>
-          <li><%= message.user %></li>
-          <li><%= message.text %></li>
-          <li><%= message.added %></li>
+  <body>
+      <h2><%= title %></h2>
+      <% messages.map((message,index) => { %>
+        
+         <ul id = <%=  index %>>
+          <li ><%= message.user %></li>
+          <li ><%= message.text %></li>
+          <li ><%= message.added %></li>
+          <form method ="post" action ="/details">
+            <input type="hidden" name="user" value="<%= message.user %>"/>
+            <input type="hidden" name="text" value="<%= message.text %>"/>
+            <input type="hidden" name="added" value="<%= message.added %>"/>
+            <input type="submit"  value = "details"/>
+          </form>
         </ul>
+       
+        <% index = index + 1 %>
       <% }) %>
+      <form method="get" action = "/new">
+        <input type="submit" name="newMessage" value="New Message" />
+      </form>
+    
   </body>
 </html>
